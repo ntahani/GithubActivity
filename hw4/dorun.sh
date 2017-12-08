@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 function killitif {
     docker ps -a  > /tmp/yy_xx$$
@@ -7,6 +7,7 @@ function killitif {
      echo "killing older version of $1"
      docker rm -f `docker ps -a | grep $1  | sed -e 's: .*$::'`
    fi
+   /bin/rm /tmp/yy_xx$$
 }
 
 
@@ -17,16 +18,16 @@ killitif proxy
 killitif web1
 killitif web2
 
-# Start the compose yml thing up, but using the network name ecs189
+# Start the compose yml thing up, but using the network name ecs161
 # This is so that the other shells know where to find the containers
 # to hotswap, regardless of the directories 
 
-docker-compose -p ecs189 up  & 
+docker-compose -p ecs161 up  & 
 
 # Initially the reverse proxy points at engineering URL 
 # WE first make it point at the right url, using the init.sh script
 
-sleep 10 && docker exec ecs189_proxy_1 /bin/bash /bin/init.sh
+sleep 10 && docker exec ecs161_proxy_1 /bin/bash /bin/init.sh
 echo "redirecting to the service" 
 echo "...nginx restarted, should be ready to go!" 
 

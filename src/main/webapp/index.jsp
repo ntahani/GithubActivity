@@ -13,10 +13,19 @@
     <link rel='stylesheet' href='main.css'>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <title>Github Stalker</title>
+    <style>
+      table, th, td {
+        border-collapse: collapse;
+      }
+      table {width: 70%; cellspacing:5px;}
+      th {text-align: left;}
+      td {text-align: left;}
+    </style>
+
   </head>
   <body>
   <div id="core">
-    <h2>What Have I Been Up To?</h2>
+    <h2>What Have I Been Up To? (Version 2)</h2>
     <form action="index.jsp" method="GET">
       <div class="form-group">
         <label for="user"><h3>Github username:</h3></label>
